@@ -3,6 +3,11 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "clean": "rm -rf packages && rm tsconfig.json",
+    "generate": "node generate.js",
+    "repro": "tsc --watch --extendedDiagnostics"
+  },
   "dependencies": {
     "typescript": "^4.5.5"
   }
