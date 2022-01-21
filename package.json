@@ -1,0 +1,9 @@
+{
+  "name": "typescript-emfile-repro",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  }
+}
