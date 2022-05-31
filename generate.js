@@ -3,7 +3,9 @@ import path from "path";
 
 // Around ~4099 fs.watch calls triggers EMFILE errors on macOS 11.6.2. With the
 // watchOptions below, TypeScript performs 2 fs.watch calls per project.
-const NUM_PACKAGES_TO_GENERATE = 2050;
+// Although only 2050 packages is enough to crash TypeScript, let's create 4400
+// to make a Node.js only repro easier.
+const NUM_PACKAGES_TO_GENERATE = 4400;
 
 const PACKAGES_DIR = "packages"
 
