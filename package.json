@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf packages && rm tsconfig.json",
     "generate": "node generate.js",
-    "repro": "tsc --watch --extendedDiagnostics"
+    "repro": "tsc --watch --extendedDiagnostics",
+    "repro-node": "node node-only-repro.mjs"
   },
   "dependencies": {
     "typescript": "^4.5.5"
