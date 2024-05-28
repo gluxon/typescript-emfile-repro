@@ -10,6 +10,6 @@
     "repro-node": "node node-only-repro.mjs"
   },
   "dependencies": {
-    "typescript": "^4.5.5"
+    "typescript": "^5.4.5"
   }
 }
