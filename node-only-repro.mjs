@@ -8,10 +8,13 @@ async function main() {
   const watchers = [];
 
   for await (const directory of getDirsRecursive(process.cwd())) {
-    // Waiting before setting up the next file watcher gives a more consistent
-    // failure at the 4097th watcher. This suggests the FSEvents watcher limit
-    // is 4096.
-    await scheduler.wait(200);
+    // The FSEvents watcher limit seems to be reliably around 4096 on macOS
+    // 14.4. Wait longer before creating the 4097th watcher. Otherwise we'd fail
+    // on a random watcher >4100 since these watchers are being created
+    // asynchronously.
+    if (watchers.length > 4080) {
+      await scheduler.wait(200);
+    }
 
     if (didAnyWatcherError) {
       break;
