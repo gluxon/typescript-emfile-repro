@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
+import { scheduler } from 'node:timers/promises';
 
 async function main() {
   let didAnyWatcherError = false;
@@ -7,6 +8,11 @@ async function main() {
   const watchers = [];
 
   for await (const directory of getDirsRecursive(process.cwd())) {
+    // Waiting before setting up the next file watcher gives a more consistent
+    // failure at the 4097th watcher. This suggests the FSEvents watcher limit
+    // is 4096.
+    await scheduler.wait(200);
+
     if (didAnyWatcherError) {
       break;
     }
