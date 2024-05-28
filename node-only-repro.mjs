@@ -16,8 +16,8 @@ async function main() {
     watchers.push(watcher);
 
     watcher.on("error", (err) => {
-      // All watchers error after the first one errors.
-      // It appeares all watchers error after the first one errors.
+      // It appears all watchers emit an EMFILE error after the first one errors.
+      // https://github.com/nodejs/node/issues/43267#issuecomment-1143250277
       if (didAnyWatcherError) {
         return;
       }
